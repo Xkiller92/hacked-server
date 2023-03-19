@@ -1,0 +1,72 @@
+syntax = "proto3";
+
+service Hackathon{
+    //admin client rpcs
+    rpc CheckInstancePresence (Empty) returns (InstanceState);
+    rpc CreateInstance (InstanceInfo) returns (Empty);
+    rpc StartInstance (Empty) returns (Empty);
+    rpc StopInstance (Empty) returns (HackathonResults);
+    //user client rpcs
+    rpc CheckInstanceCurrentPresence (Empty) returns (stream InstanceState);
+    rpc Register (UserInfo) returns (AuthToken);
+    rpc Withdraw (AuthToken) returns (Empty);
+    rpc CheckHackathonFinished (Empty) returns (stream InstanceState);
+    rpc RequestInputString (InputRequestParams) returns (InputResponseParams); 
+    rpc ValidateAnswer (InputAnswerParams) returns (AnswerState);
+}
+
+
+enum State{
+    active = 0;
+    running = 1;
+    empty = 2;  
+    finished =3; 
+}
+
+message Empty{
+
+}
+
+message InstanceInfo{
+    string name = 3;
+    int32 challangeCount = 1;
+    int32 durationInMinutes = 2;
+}
+
+message InstanceState{
+    State state = 1;
+    InstanceInfo hackathonInfo = 2;
+}
+
+message HackathonResults{
+    repeated UserInfo users = 1;
+}
+
+message UserInfo{
+    string name = 3;
+    int32 score = 1;
+    int32 solvedChallangeCount = 2;
+}
+
+message AuthToken{
+    int32 value = 1;
+}
+
+message InputRequestParams{
+    AuthToken token = 1;
+    int32 challangeNumber = 2;
+}
+
+message InputAnswerParams{
+    AuthToken token = 1;
+    int32 challangeNumber = 2;
+    string value = 3;
+}
+
+message InputResponseParams{
+    string value = 1;
+}
+
+message AnswerState{
+    string value = 1;
+}
