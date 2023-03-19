@@ -2,15 +2,13 @@ FROM mcr.microsoft.com/dotnet/sdk:7.0 as build
 
 WORKDIR /src
 
-COPY ./StockKube.sln .
-COPY ./src/StockData/StockData.csproj ./src/StockData/
-COPY ./src/StockWeb/StockWeb.csproj ./src/StockWeb/
+COPY ./hacked-instance_handler.csproj ./src/hacked-instance_handler/
 
 RUN dotnet restore
 
 COPY . .
 
-RUN dotnet publish --no-restore -c Release -o /published src/StockData/StockData.csproj
+RUN dotnet publish --no-restore -c Release -o /published src/hacked-instance_handler/hacked-instance_handler.csproj
 
 FROM mcr.microsoft.com/dotnet/aspnet:7.0 as runtime
 
