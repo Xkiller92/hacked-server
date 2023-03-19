@@ -2,7 +2,7 @@ FROM mcr.microsoft.com/dotnet/sdk:7.0 as build
 
 WORKDIR /src
 
-COPY ./hacked-instance_handler.csproj ./src/hacked-instance_handler/
+COPY ./hacked-instance_handler.csproj .
 
 RUN dotnet restore
 
