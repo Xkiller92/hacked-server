@@ -19,4 +19,4 @@ WORKDIR /app
 
 COPY --from=build /published .
 
-ENTRYPOINT [ "dotnet", "StockData.dll" ]
+ENTRYPOINT [ "dotnet", "hacked-instance_handler.dll" ]
