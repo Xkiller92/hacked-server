@@ -4,7 +4,7 @@ using System.IO;
 public sealed class ScoreHandler
 {
     private int participantsNumber;
-    private string scoresPath = @"./Resources/scores.txt";
+    private string scoresPath = @"./src/Resources/scores.txt";
     private List<int> scores;
     private int challangeCount;
     public ScoreHandler(int currParticipantNumber, int challangeCount)
