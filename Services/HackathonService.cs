@@ -80,7 +80,7 @@ public class HackathonService : Hackathon.HackathonBase
 
     public override Task<InputResponseParams> RequestInputString(InputRequestParams request, ServerCallContext context)
     {
-        string[] lines = File.ReadAllLines(@"Resources/input.txt");
+        string[] lines = File.ReadAllLines(@"/Resources/input.txt");
 
         return Task.FromResult(new InputResponseParams{
             Value = lines[request.ChallangeNumber]
@@ -89,7 +89,7 @@ public class HackathonService : Hackathon.HackathonBase
 
     public override Task<AnswerState> ValidateAnswer(InputAnswerParams request, ServerCallContext context)
     {
-        string[] lines = File.ReadAllLines(@"Resources/input.txt");
+        string[] lines = File.ReadAllLines(@"/Resources/input.txt");
 
         AnswerState state = new();
 
